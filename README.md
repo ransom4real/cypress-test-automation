@@ -1,40 +1,57 @@
 # Manual Tests Performed
 
 * **Scenario:** Create booking with all inputs in their default state (Empty)
+
   **Result:** Booking creation fails. Further inspection of the network logs reveal a server error (500). Possibly because inputs fail validation on the server side (Should not be null or empty)
 
 * **Scenario Outline:** Create booking with price having a non numeric/decimal value
-  **Result:** Booking creation fails. Further inspection of the network logs reveal a server error (500). Possibly because input validation fails on price attribute as it expects a numeric/decimal value
+
   **Examples:**
-    | values  |
-    | text    |
-    | 100.0.1 |
-    | %$@£    |
+
+     values  |
+     --------|
+     text    |
+     100.0.1 |
+     %$@£    |
+
+  **Result:** Booking creation fails. Further inspection of the network logs reveal a server error (500). Possibly because input validation fails on price attribute as it expects a numeric/decimal value
 
 * **Scenario:** Create booking with all fields filled out appropriately
+
   **Result:** Booking creation passes. Booking appears in the list of bookings with all details rendered. Also inspection of the network logs shows a success response (200)
 
 * **Scenario:** Create booking with check-out date in the past and check-in date in the future
+
   **Result:** Booking creation passes. It seems asides the basic validation of ensuring the dates are formatted correctly there are no further validations on the dates to check if they are in range of each other.
 
 * **Scenario:** Delete a non-existent booking ID by modifying the ID in the delete button
+
   **Result:** Booking cannot be deleted. On further inspection of the network logs we get a "method not allowed" error (405) indicating the ID used does not exist
 
 * **Scenario:** Successfully delete a booking
+
   **Result:** Booking is deleted and disappears from the list of bookings table.
 
 * **Scenario:** Incorrectly formatted checkin date using input field
+
   **Examples:**
-    | input      |
-    | 28-02-2022 | # DD-MM-YYYY
-    | 2022-28-02 | # YYYY-DD-MM
+
+     input      |              
+     -----------|--------------
+     28-02-2022 | # DD-MM-YYYY 
+     2022-28-02 | # YYYY-DD-MM 
+
   **Result:** Booking creation fails. Further inspection of the network logs reveal a server error (500). Expected date format is YYYY-MM-DD or MM-DD-YYYY
 
 * **Scenario:** Incorrectly formatted checkout date using input field
+
   **Examples:**
-    | input      |
-    | 28-02-2022 | # DD-MM-YYYY
-    | 2022-28-02 | # YYYY-DD-MM
+
+     input       |
+     ------------|--------------
+     28-02-2022  | # DD-MM-YYYY
+     2022-28-02  | # YYYY-DD-MM
+
   **Result:** Booking creation fails. Further inspection of the network logs reveal a server error (500). Expected date format is YYYY-MM-DD or MM-DD-YYYY
 
 # Test Automation
