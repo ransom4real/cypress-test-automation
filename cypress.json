@@ -1,0 +1,9 @@
+{
+    "testFiles": ["**/*.{feature,features}"],
+    "reporter": "node_modules/mochawesome",
+    "reporterOptions": {
+        "overwrite": false,
+        "html": false,
+        "json": false
+    }
+}
