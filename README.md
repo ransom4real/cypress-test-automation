@@ -65,7 +65,7 @@
 In your DOS/Unix terminal
 
 * Change directory into the root of this project using command `cd path/to/root/directory/of/this/project`
-* Install project dependencies using NPM by running `npm -i`
+* Install project dependencies using NPM by running `npm install`
 
 ## To run tests using the cypress runner dashboard
 In your DOS/Unix terminal
